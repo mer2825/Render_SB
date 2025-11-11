@@ -1,0 +1,315 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fdf6f0;
+  color: #4a2c2a;
+}
+
+/* --- Estilos del Header Original --- */
+.navbar .logo {
+  width: 100px; height: 100px; object-fit: cover; border-radius: 50%;
+  border: 2px solid #d17a4b; margin-right: 10px;
+}
+header .navbar { background-color: #f8d7c4; padding: 0.7rem 1rem; }
+header .navbar .nav-link { margin: 0 5px; background-color: #d17a4b; color: #fff !important; padding: 8px 15px; border-radius: 20px; font-weight: 500; transition: 0.3s; }
+header .navbar .nav-link:hover { background-color: #c0602c; color: #fff !important; }
+
+/* --- Hero (Eslogan) --- */
+.hero { height: 60vh; background: linear-gradient(rgba(74, 44, 42, 0.5), rgba(74, 44, 42, 0.5)), url("https://images.unsplash.com/photo-1551024601-bec78d8d590d?q=80&w=1964&auto=format&fit=crop") center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero h2 { font-size: 2.5rem; font-weight: bold; color: #fff; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
+h3 { color: #d17a4b; font-weight: bold; }
+
+/* --- Carrusel con Imágenes Más Grandes --- */
+.carousel-background-wrapper { padding: 1rem 0; /* Padding reducido */ background-color: #0a192f; width: 100%; overflow: hidden; }
+.carousel-background-wrapper h3 { color: #fdf6f0; }
+.cover-flow-carousel-wrapper { position: relative; width: 100%; height: 400px; display: flex; justify-content: center; align-items: center; }
+.cover-flow-carousel-track { position: relative; width: 100%; height: 100%; }
+.cover-flow-item { position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto; width: 350px; aspect-ratio: 1 / 1; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform: scale(0) translateX(0); opacity: 0; }
+.cover-flow-item.active { transform: scale(1.1); opacity: 1; z-index: 10; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.cover-flow-item.prev { transform: scale(0.7) translateX(-80%); opacity: 0.4; z-index: 5; filter: blur(3px); }
+.cover-flow-item.next { transform: scale(0.7) translateX(80%); opacity: 0.4; z-index: 5; filter: blur(3px); }
+.cover-flow-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; border: 4px solid #fff; }
+.carousel-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(10, 25, 47, 0.5); color: #fff; border: 2px solid rgba(255, 255, 255, 0.5); border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; z-index: 20; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease; }
+.carousel-nav-btn:hover { background-color: rgba(253, 246, 240, 0.8); color: #0a192f; }
+.carousel-nav-btn.prev { left: 15%; }
+.carousel-nav-btn.next { right: 15%; }
+
+/* --- Tarjetas de Producto (Flip-Card) --- */
+.postre-container { display: inline-block; margin: 8px; } /* Margen reducido */
+.flip-card { width: 220px; height: 280px; perspective: 1000px; } /* Tamaño reducido */
+.flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px solid #d17a4b; background-color: #fff7f0; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.flip-card-back { transform: rotateY(180deg); padding: 20px; }
+.nombre-postre { margin-top: 10px; padding: 5px 10px; background-color: #d17a4b; color: #fff; border-radius: 10px; font-weight: bold; }
+.img-postre { width: 80%; height: 200px; object-fit: cover; border-radius: 10px; } /* Altura y ajuste de imagen para uniformidad */
+
+/* --- NUEVOS ESTILOS PARA HEADER --- */
+header .navbar {
+  min-height: 80px; /* Altura mínima para el header */
+  padding-top: 0.5rem; /* Padding reducido */
+  padding-bottom: 0.5rem;
+  position: relative;
+  z-index: 100;
+}
+
+.navbar-brand {
+  padding-left: 130px; /* Espacio a la izquierda para el logo */
+}
+
+header .navbar .logo {
+  position: absolute;
+  top: 20px; /* Distancia desde arriba para que 'cuelgue' */
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  border: 4px solid white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  z-index: 101; /* Por encima del header */
+}
+
+/* --- Estilos para los nuevos botones de categoría --- */
+#categoryFilterButtons .btn {
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+#categoryFilterButtons .btn-outline-primary {
+  color: #d17a4b;
+  border-color: #d17a4b;
+}
+
+#categoryFilterButtons .btn-outline-primary:hover,
+#categoryFilterButtons .btn-outline-primary.active {
+  background-color: #d17a4b;
+  color: #fff;
+  border-color: #d17a4b;
+}
+
+/* Asegurar que los productos se muestren correctamente */
+.product-item {
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Estilos para el contenedor de filtros (card) --- */
+.col-lg-3 .card {
+  background-color: #fff7f0; /* Un color de fondo más claro y cálido */
+  border: 1px solid #f8d7c4; /* Borde suave */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+.col-lg-3 .card-header {
+  background-color: #f8d7c4; /* Color de fondo del header */
+  color: #4a2c2a; /* Color de texto oscuro */
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #d17a4b; /* Borde inferior para separar del body */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.col-lg-3 .card-body {
+  padding: 20px;
+}
+
+.col-lg-3 .form-label {
+  color: #4a2c2a;
+  font-weight: 500;
+}
+
+.col-lg-3 .form-control {
+  border-color: #d17a4b; /* Borde de los inputs */
+}
+
+.col-lg-3 #applyFilters {
+  background-color: #d17a4b; /* Color del botón principal */
+  border-color: #d17a4b;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.col-lg-3 #applyFilters:hover {
+  background-color: #c0602c; /* Color al pasar el ratón */
+  border-color: #c0602c;
+}
+
+/* --- Estilos para el contenedor de información del producto destacado --- */
+.product-info-container {
+  background-color: #f8d7c4; /* Un color de fondo más claro y cálido */
+  border: 1px solid #d17a4b; /* Borde que combine */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Sombra más pronunciada */
+  padding: 30px !important; /* Aumentar el padding */
+}
+
+#producto-nombre {
+  color: #4a2c2a; /* Color de texto oscuro para el nombre */
+  font-weight: bold;
+  font-size: 2.8rem; /* Ajustar tamaño de fuente */
+}
+
+#producto-descripcion {
+  color: #6f4e37; /* Un tono de marrón para la descripción */
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+#producto-precio {
+  color: #d17a4b; /* Color principal para el precio */
+  font-weight: bolder;
+  font-size: 3rem; /* Hacer el precio más grande y llamativo */
+  margin-top: 15px;
+}
+
+/* --- Estilos para el Carrito de Compras --- */
+.main-container {
+    display: flex;
+    transition: margin-right 0.4s ease-in-out;
+}
+
+.content-wrap {
+    flex-grow: 1;
+    transition: width 0.4s ease-in-out;
+}
+
+.cart-sidebar {
+    width: 360px; /* Ancho ajustado */
+    background-color: #fff7f0;
+    border: 2px solid #d17a4b;
+    padding: 25px; /* <<< LA CORRECCIÓN PRINCIPAL: Padding general */
+    position: fixed;
+    right: -400px; /* Oculto (ancho + margen) */
+    top: 20px;     /* Margen superior */
+    bottom: 20px;  /* Margen inferior */
+    height: auto;  /* Altura automática */
+    max-height: calc(100vh - 40px); /* Altura máxima con márgenes */
+    transition: right 0.4s ease-in-out;
+    z-index: 1030;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 25px rgba(74, 44, 42, 0.2);
+    border-radius: 15px; /* Bordes redondeados */
+}
+
+.cart-sidebar.open {
+    right: 20px; /* Posición visible con margen */
+}
+
+.main-container.cart-open .content-wrap {
+    margin-right: 400px; /* Espacio para el carrito flotante */
+}
+
+/* --- Secciones del Carrito --- */
+.cart-header, .cart-footer {
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.cart-header {
+    padding-bottom: 20px; /* Espacio entre título y lista de productos */
+    border-bottom: 1px solid #f8d7c4;
+}
+
+.cart-header h3 {
+    color: #4a2c2a;
+}
+
+#cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 0; /* Espacio vertical entre header/footer y la lista */
+    margin: 0; 
+}
+
+.cart-footer {
+    padding-top: 20px; /* Espacio entre lista de productos y footer */
+    border-top: 1px solid #f8d7c4;
+    background-color: transparent; /* El footer comparte el fondo del sidebar */
+}
+
+/* --- Estilos de los Items del Carrito --- */
+.cart-item {
+    background-color: #fff;
+    border: 1px solid #f8d7c4;
+    border-radius: 8px;
+    padding: 20px;
+    transition: box-shadow 0.2s;
+}
+
+.cart-item + .cart-item {
+    margin-top: 15px; /* Espacio entre los items del carrito */
+}
+
+.cart-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cart-item .remove-from-cart {
+    color: #d17a4b;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.cart-item .remove-from-cart:hover {
+    opacity: 1;
+    color: #c0602c;
+}
+
+.cart-item .change-quantity, .cart-item .quantity-input {
+    border-color: #f8d7c4;
+}
+
+.cart-item .change-quantity:hover {
+    background-color: #f8d7c4;
+    color: #4a2c2a;
+}
+
+.cart-item .quantity-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(209, 122, 75, 0.25);
+    border-color: #d17a4b;
+}
+
+/* --- Estilos del Footer del Carrito (Total y Botón) --- */
+.cart-footer .fw-bold {
+    color: #4a2c2a;
+}
+
+.cart-footer #cart-total {
+    color: #d17a4b;
+    font-size: 1.2rem;
+}
+
+.cart-footer .btn-primary {
+    background-color: #d17a4b;
+    border-color: #d17a4b;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.cart-footer .btn-primary:hover {
+    background-color: #c0602c;
+    border-color: #c0602c;
+}
+
+/* --- Ajustes para el input de cantidad --- */
+.cart-item .quantity-input {
+    -moz-appearance: textfield;
+}
+
+.cart-item .quantity-input::-webkit-outer-spin-button,
+.cart-item .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

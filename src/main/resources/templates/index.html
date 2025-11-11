@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Acceso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<div class="d-flex">
+    <div th:replace="~{sidebar :: sidebar(activeUri='/')}"></div>
+
+    <div id="main-content" class="main-content w-100">
+        <div th:replace="~{header :: header(pageTitle='Dashboard')}"></div>
+
+        <main class="container-fluid p-4">
+            <div th:if="${access_denied_error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span th:text="${access_denied_error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="row g-4">
+                <!-- Ventas Diarias -->
+                <div class="col-sm-6">
+                    <div class="card card-blue h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="card-title fw-semibold">Ventas Diarias</h5>
+                                    <p class="card-text mb-0">Ventas: <strong th:text="${ventasDiariasNumero != null ? ventasDiariasNumero : '0'}">0</strong></p>
+                                    <p class="card-text">Total: <strong th:text="${ventasDiariasTotal != null ? 'S/ ' + #numbers.formatDecimal(ventasDiariasTotal, 1, 'COMMA', 2, 'POINT') : 'S/ 0.00'}">S/ 0.00</strong></p>
+                                </div>
+                                <div class="card-icon"><i class="bi bi-cash-coin"></i></div>
+                            </div>
+                            <a href="#" class="card-dashboard-link mt-2">Ver detalles &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ventas Mensuales -->
+                <div class="col-sm-6">
+                    <div class="card card-green h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h5 class="card-title fw-semibold">Ventas Mensuales</h5>
+                                    <p class="card-text mb-0">Ventas: <strong th:text="${ventasMensualesNumero != null ? ventasMensualesNumero : '0'}">0</strong></p>
+                                    <p class="card-text">Total: <strong th:text="${ventasMensualesTotal != null ? 'S/ ' + #numbers.formatDecimal(ventasMensualesTotal, 1, 'COMMA', 2, 'POINT') : 'S/ 0.00'}">S/ 0.00</strong></p>
+                                </div>
+                                <div class="card-icon"><i class="bi bi-calendar-month"></i></div>
+                            </div>
+                            <a href="#" class="card-dashboard-link mt-2">Ver detalles &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top 5 Productos Más Vendidos de la Semana -->
+                <div class="col-sm-12 mt-4">
+                    <div class="card shadow-sm rounded-lg">
+                        <div class="card-body">
+                            <h5 class="card-title fw-semibold mb-3">Top 5 Productos Más Vendidos (Semanal)</h5>
+                            <div th:if="${#lists.isEmpty(top5Productos)}" class="alert alert-info" role="alert">
+                                No hay productos vendidos esta semana.
+                            </div>
+                            <ul class="list-group list-group-flush" th:unless="${#lists.isEmpty(top5Productos)}">
+                                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="producto : ${top5Productos}">
+                                    <div>
+                                        <h6 class="mb-0" th:text="${producto.nombreProducto}">Nombre del Producto</h6>
+                                        <small class="text-muted" th:text="${producto.unidadesVendidas + ' unidades vendidas'}"></small>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill" th:text="${'S/ ' + #numbers.formatDecimal(producto.totalDinero, 1, 'COMMA', 2, 'POINT')}">S/ 0.00</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card shadow-sm mt-4 rounded-lg">
+                <div class="card-body">
+                    <h2 class="card-title h4 fw-bold">¡Bienvenido a tu Pastelería!</h2>
+                    <p class="card-text text-muted">Usa el menú de la izquierda para gestionar tus productos, clientes y mucho más.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

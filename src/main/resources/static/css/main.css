@@ -1,0 +1,153 @@
+/*
+ * Hoja de estilos principal para la aplicación Acceso.
+ * Archivo: src/main/resources/static/css/main.css
+ */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 15px; /* Ajustado para incluir padding inferior */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    transition: transform .3s ease-in-out;
+    width: 250px;
+    overflow-y: auto; /* Añadido para desplazamiento vertical */
+}
+
+@media (max-width: 767.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .sidebar-overlay.active {
+        display: block;
+    }
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+    display: none;
+    cursor: pointer;
+}
+
+.main-content {
+    transition: margin-left .3s ease-in-out;
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        margin-left: 250px;
+    }
+}
+
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+.toast-container {
+    z-index: 1080;
+}
+
+/* --- Estilos Tema Postrería --- */
+
+:root {
+    --color-chocolate: #4a2c2a;
+    --color-crema: #fdf6f0;
+    --color-rosa-pastel: #f8d7c4;
+    --color-acento: #d17a4b;
+}
+
+.sidebar-bakery {
+    background-color: var(--color-chocolate) !important;
+    color: #fff;
+}
+
+.sidebar-bakery .nav-link {
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre icono y texto */
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-bakery .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-bakery .nav-link.active {
+    background-color: var(--color-acento) !important;
+    font-weight: bold;
+}
+
+.sidebar-bakery hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Nuevas Tarjetas para el Dashboard */
+.card-pink {
+    background-color: var(--color-rosa-pastel);
+    color: var(--color-chocolate);
+}
+
+.card-cream {
+    background-color: var(--color-crema);
+    border: 1px solid var(--color-rosa-pastel);
+    color: var(--color-chocolate);
+}
+
+.card-accent {
+    background-color: var(--color-acento);
+    color: #fff;
+}
+
+.card-dashboard-link {
+    color: inherit !important;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.card-dashboard-link:hover {
+    opacity: 1;
+}
+
+/* --- Estilos para el Loading Overlay (CORREGIDO) --- */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8); /* Fondo semitransparente */
+    display: flex; /* Siempre flex para que ocupe espacio */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Asegura que esté por encima de todo */
+    opacity: 0; /* Inicialmente invisible */
+    visibility: hidden; /* Inicialmente no interactuable */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Transición suave */
+}
+
+#loading-overlay.loading-overlay-visible {
+    opacity: 1; /* Visible */
+    visibility: visible; /* Interactuable */
+}
