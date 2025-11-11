@@ -2,7 +2,7 @@
 # FASE 1: BUILD (Compilación)
 # Usamos la imagen de Maven con Java 17 (versión 3.9.5) para compilar.
 # -----------------------------------------------------------------------------
-FROM maven:3.9.5-openjdk-17 AS build
+FROM maven:3.9.5-jdk-17 AS build
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
