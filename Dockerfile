@@ -21,7 +21,7 @@ RUN mvn clean package -DskipTests
 # FASE 2: RUNTIME (Ejecución)
 # Usamos una imagen base mucho más ligera para el entorno de producción.
 # -----------------------------------------------------------------------------
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jre-slim
 
 # Crea una carpeta de trabajo
 WORKDIR /app
